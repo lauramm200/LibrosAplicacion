@@ -14,7 +14,7 @@ data class Libro(
     val titulo: String,
     val autor: String,
     val paginas: Int,
-    val estado: Estado,
+    val estado: Estado = Estado.QUIERO_LEER,
 
     // Quiero leer
     val recomendadoPor: String? = null,
