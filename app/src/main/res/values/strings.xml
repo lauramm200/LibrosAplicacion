@@ -1,3 +1,44 @@
 <resources>
     <string name="app_name">LibrosAplicacion</string>
+    <!-- ============ COLORES ============ -->
+
+        <!-- ============ TEXTOS (pantalla Login/Registro) ============ -->
+        <!-- Título grande de la cabecera -->
+        <string name="titulo_app">Mi Biblioteca</string>
+        <!-- Frase bajo el título -->
+        <string name="subtitulo_app">Tu biblioteca personal de lectura</string>
+        <!-- Etiqueta flotante del campo de usuario -->
+        <string name="hint_usuario">Nombre de usuario</string>
+        <!-- Etiqueta flotante del campo de contraseña -->
+        <string name="hint_contrasena">Contraseña</string>
+        <!-- Texto de ayuda bajo el campo de contraseña -->
+        <string name="ayuda_contrasena">Mínimo 6 caracteres</string>
+        <!-- Texto pulsable inferior para cambiar a la pestaña de registro -->
+        <string name="cambiar_a_registro">¿No tienes cuenta? Regístrate</string>
+
+        <!-- ============ BOTONES (pantalla Login/Registro) ============ -->
+        <!-- Pestañas superiores -->
+        <string name="tab_iniciar_sesion">Iniciar sesión</string>
+        <string name="tab_registrarse">Registrarse</string>
+        <!-- Botón principal de acción -->
+        <string name="btn_iniciar_sesion">Iniciar sesión</string>
+
+
+    <!--main activity-->
+    <!--TEXTO-->
+    <string name="saludo">Hola, nombre</string>
+    <string name="saludo_pregunta">¿Qué quieres hacer hoy?</string>
+    <string name="tu_biblioteca">Tu biblioteca</string>
+
+
+    <!--BOTONES-->
+    <string name="seguir_leyendo">SEGUIR LEYENDO</string>
+    <string name="buscar_libros">Buscar libros</string>
+    <string name="buscar_libros_desc">Encuentra y guarda nuevos libros</string>
+    <string name="mis_leidos">Mis libros leídos</string>
+    <string name="me_estoy_leyendo">Me estoy leyendo</string>
+    <string name="quiero_leer">Quiero leer</string>
+    <string name="mi_perfil">Mi perfil</string>
+
+
 </resources>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- RAIZ: ScrollView permite desplazar la pantalla si el teclado tapa contenido.
+     fillViewport hace que ocupe toda la pantalla aunque el contenido sea corto.
+     El id "main" es el que usa el codigo de margenes del sistema de MainActivity. -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/crema"
+    android:fillViewport="true">
+
+    <!-- COLUMNA: apila todos los elementos de arriba abajo y los centra en horizontal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="72dp"
+        android:paddingBottom="24dp">
+
+        <!-- TITULO de la app -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_app"
+            android:textColor="@color/marron"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <!-- SUBTITULO bajo el titulo; margen inferior para separar de las pestanas -->
+        <TextView
+            android:id="@+id/tvSubtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/subtitulo_app"
+            android:textColor="@color/verde"
+            android:textSize="16sp" />
+
+        <!-- PESTANAS: Iniciar sesion / Registrarse.
+             tabIndicatorColor = linea inferior de la pestana activa.
+             tabSelectedTextColor / tabTextColor = color del texto activo / inactivo. -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:tabIndicatorColor="@color/naranja"
+            app:tabSelectedTextColor="@color/naranja"
+            app:tabTextColor="@color/marron">
+
+            <!-- Pestana 1 (la primera queda seleccionada por defecto) -->
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_iniciar_sesion" />
+
+            <!-- Pestana 2 -->
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tab_registrarse" />
+        </com.google.android.material.tabs.TabLayout>
+
+        <!-- CAMPO USUARIO: TextInputLayout dibuja el borde y la etiqueta flotante (hint);
+             el TextInputEditText de dentro es donde escribe el usuario.
+             boxStrokeColor = color del borde al enfocar; hintTextColor = color de la etiqueta. -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilUsuario"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:hint="@string/hint_usuario"
+            app:boxStrokeColor="@color/verde"
+            app:hintTextColor="@color/verde">
+
+            <!-- inputType="text": teclado de texto normal -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/marron" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- CAMPO CONTRASENA: igual que el anterior, mas:
+             helperText = texto de ayuda "Minimo 6 caracteres" bajo el campo,
+             endIconMode="password_toggle" = icono de ojo para mostrar/ocultar la clave. -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilContrasena"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_contrasena"
+            app:boxStrokeColor="@color/verde"
+            app:endIconMode="password_toggle"
+            app:helperText="@string/ayuda_contrasena"
+            app:helperTextTextColor="@color/marron"
+            app:hintTextColor="@color/verde">
+
+            <!-- inputType="textPassword": oculta los caracteres escritos -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/marron" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTON PRINCIPAL: su texto cambiara segun la pestana activa (se programa en la Fase 5).
+             En MaterialButton el color de fondo se pone con backgroundTint, no con background. -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAccion"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/naranja"
+            android:text="@string/btn_iniciar_sesion"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
+
+        <!-- TEXTO PULSABLE inferior: llevara a la pestana de registro.
+             minHeight 48dp = tamano tactil minimo recomendado. -->
+        <TextView
+            android:id="@+id/tvCambiarModo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:minHeight="48dp"
+            android:text="@string/cambiar_a_registro"
+            android:textColor="@color/verde"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>
