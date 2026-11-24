@@ -1,44 +1,62 @@
 <resources>
     <string name="app_name">LibrosAplicacion</string>
-    <!-- ============ COLORES ============ -->
 
-        <!-- ============ TEXTOS (pantalla Login/Registro) ============ -->
-        <!-- Título grande de la cabecera -->
-        <string name="titulo_app">Mi Biblioteca</string>
-        <!-- Frase bajo el título -->
-        <string name="subtitulo_app">Tu biblioteca personal de lectura</string>
-        <!-- Etiqueta flotante del campo de usuario -->
-        <string name="hint_usuario">Nombre de usuario</string>
-        <!-- Etiqueta flotante del campo de contraseña -->
-        <string name="hint_contrasena">Contraseña</string>
-        <!-- Texto de ayuda bajo el campo de contraseña -->
-        <string name="ayuda_contrasena">Mínimo 6 caracteres</string>
-        <!-- Texto pulsable inferior para cambiar a la pestaña de registro -->
-        <string name="cambiar_a_registro">¿No tienes cuenta? Regístrate</string>
+    <!-- ============ TEXTOS (pantalla Login/Registro) ============ -->
+    <!-- Título grande de la cabecera -->
+    <string name="titulo_app">Mi Biblioteca</string>
+    <!-- Frase bajo el título -->
+    <string name="subtitulo_app">Tu biblioteca personal de lectura</string>
+    <!-- Etiqueta flotante del campo de usuario -->
+    <string name="hint_usuario">Nombre de usuario</string>
+    <!-- Etiqueta flotante del campo de contraseña -->
+    <string name="hint_contrasena">Contraseña</string>
+    <!-- Texto de ayuda bajo el campo de contraseña -->
+    <string name="ayuda_contrasena">Mínimo 6 caracteres</string>
+    <!-- Texto pulsable inferior para cambiar a la pestaña de registro -->
+    <string name="cambiar_a_registro">¿No tienes cuenta? Regístrate</string>
 
-        <!-- ============ BOTONES (pantalla Login/Registro) ============ -->
-        <!-- Pestañas superiores -->
-        <string name="tab_iniciar_sesion">Iniciar sesión</string>
-        <string name="tab_registrarse">Registrarse</string>
-        <!-- Botón principal de acción -->
-        <string name="btn_iniciar_sesion">Iniciar sesión</string>
-
-
-    <!--main activity-->
-    <!--TEXTO-->
-    <string name="saludo">Hola, nombre</string>
-    <string name="saludo_pregunta">¿Qué quieres hacer hoy?</string>
-    <string name="tu_biblioteca">Tu biblioteca</string>
+    <!-- ============ BOTONES (pantalla Login/Registro) ============ -->
+    <!-- Pestañas superiores -->
+    <string name="tab_iniciar_sesion">Iniciar sesión</string>
+    <string name="tab_registrarse">Registrarse</string>
+    <!-- Botón principal de acción -->
+    <string name="btn_iniciar_sesion">Iniciar sesión</string>
 
 
-    <!--BOTONES-->
-    <string name="seguir_leyendo">SEGUIR LEYENDO</string>
-    <string name="buscar_libros">Buscar libros</string>
-    <string name="buscar_libros_desc">Encuentra y guarda nuevos libros</string>
-    <string name="mis_leidos">Mis libros leídos</string>
-    <string name="me_estoy_leyendo">Me estoy leyendo</string>
-    <string name="quiero_leer">Quiero leer</string>
-    <string name="mi_perfil">Mi perfil</string>
+    <!-- ============ TEXTOS (pantalla Bienvenida) ============ -->
+    <!-- Saludo: %1$s se sustituira por el nombre del usuario desde Kotlin -->
+    <string name="saludo">Hola, %1$s</string>
+    <!-- Pregunta bajo el saludo -->
+    <string name="pregunta_hoy">¿Qué quieres hacer hoy?</string>
+    <!-- Etiqueta pequena de la tarjeta del libro en curso -->
+    <string name="etiqueta_seguir_leyendo">SEGUIR LEYENDO</string>
+    <!-- Fecha de inicio: %1$s se sustituira por la fecha (ej. 2 nov 2026) -->
+    <string name="inicio_lectura">Inicio: %1$s</string>
+    <!-- Cabecera de la seccion de botones -->
+    <string name="seccion_biblioteca">Tu biblioteca</string>
+    <!-- Descripcion bajo el boton Buscar libros -->
+    <string name="buscar_descripcion">Encuentra y guarda nuevos libros</string>
+    <!-- Descripcion de accesibilidad de la portada (la leen los lectores de pantalla) -->
+    <string name="desc_portada">Portada del libro</string>
+
+    <!-- ============ BOTONES (pantalla Bienvenida) ============ -->
+    <string name="btn_buscar_libros">Buscar libros</string>
+    <string name="btn_mis_leidos">Mis libros leídos</string>
+    <string name="btn_me_estoy_leyendo">Me estoy leyendo</string>
+    <string name="btn_quiero_leer">Quiero leer</string>
+    <string name="btn_mi_perfil">Mi perfil</string>
+
+    <!-- ============ TEXTOS (pantalla Perfil) ============ -->
+    <!-- %1$s se sustituira por el ano de registro (ej. 2026) -->
+    <string name="lector_desde">Lector desde %1$s</string>
+    <!-- Etiquetas de los tres contadores -->
+    <string name="etiqueta_leidos">Leídos</string>
+    <string name="etiqueta_leyendo">Leyendo</string>
+    <string name="etiqueta_por_leer">Por leer</string>
+    <!-- Titulo de la tarjeta de la grafica -->
+    <string name="titulo_tasa_mensual">Tasa de lectura mensual</string>
+    <!-- %1$d se sustituira por la media (numero entero) -->
+    <string name="media_paginas">Páginas leídas por mes · media: %1$d págs./mes</string>
 
 
 </resources>

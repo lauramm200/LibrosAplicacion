@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!-- RAIZ: igual que en el login (ScrollView, fondo crema, id "main").
+         xmlns:tools permite poner textos de ejemplo que SOLO se ven en la vista previa. -->
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/crema"
+        android:fillViewport="true">
+
+        <!-- COLUMNA principal: apila todas las secciones de arriba abajo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
+
+            <!-- SALUDO: tools:text solo es para la vista previa; el texto real vendra de Kotlin -->
+            <TextView
+                android:id="@+id/tvSaludo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/marron"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="Hola, Lau" />
+
+            <!-- PREGUNTA -->
+            <TextView
+                android:id="@+id/tvPregunta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/pregunta_hoy"
+                android:textColor="@color/verde"
+                android:textSize="16sp" />
+
+            <!-- TARJETA "SEGUIR LEYENDO": MaterialCardView = contenedor con esquinas
+                 redondeadas y sombra. clickable="true" activa el efecto al pulsar. -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSeguirLeyendo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp">
+
+                <!-- Fila interior: portada a la izquierda, textos a la derecha -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <!-- PORTADA: tamano fijo; el fondo amarillo hace de marcador hasta
+                         que carguemos la imagen real desde la API. centerCrop evita deformarla. -->
+                    <ImageView
+                        android:id="@+id/ivPortada"
+                        android:layout_width="72dp"
+                        android:layout_height="104dp"
+                        android:background="@color/amarillo"
+                        android:contentDescription="@string/desc_portada"
+                        android:scaleType="centerCrop" />
+
+                    <!-- Columna de textos; weight=1 con width=0dp ocupa todo el espacio restante -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <!-- Etiqueta naranja pequena -->
+                        <TextView
+                            android:id="@+id/tvEtiquetaSeguir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/etiqueta_seguir_leyendo"
+                            android:textColor="@color/naranja"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <!-- Titulo del libro en curso (dato dinamico) -->
+                        <TextView
+                            android:id="@+id/tvLibroTitulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/marron"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            tools:text="Cien años de soledad" />
+
+                        <!-- Fecha de inicio (dato dinamico) -->
+                        <TextView
+                            android:id="@+id/tvLibroInicio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/verde"
+                            android:textSize="14sp"
+                            tools:text="Inicio: 2 nov 2026" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- CABECERA de seccion -->
+            <TextView
+                android:id="@+id/tvSeccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/seccion_biblioteca"
+                android:textColor="@color/marron"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- TARJETA "BUSCAR LIBROS": ocupa todo el ancho, en naranja -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnBuscar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/naranja"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <!-- Texto del "boton" -->
+                    <TextView
+                        android:id="@+id/tvBuscarTitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/btn_buscar_libros"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:drawableStart="@drawable/ic_buscar"
+                        android:drawablePadding="12dp"
+                        android:drawableTint="@color/black"
+                        android:gravity="center_vertical"
+                        />
+
+                    <!-- Descripcion -->
+                    <TextView
+                        android:id="@+id/tvBuscarDescripcion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/buscar_descripcion"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- FILA 1 de la cuadricula: dos botones lado a lado.
+                 Cada boton usa width=0dp + weight=1, asi reparten el ancho al 50%. -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- Mis libros leidos -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLeidos"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/verde"
+                    android:text="@string/btn_mis_leidos"
+                    android:textColor="@color/white"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_leidos"
+                    app:iconGravity="textTop"
+                    app:iconSize="28dp"
+                    app:iconPadding="4dp"/>
+
+                <!-- Me estoy leyendo (texto marron porque el fondo amarillo es claro) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLeyendo"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/amarillo"
+                    android:text="@string/btn_me_estoy_leyendo"
+                    android:textColor="@color/marron"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_leyendo"
+                    app:iconGravity="textTop"
+                    app:iconSize="28dp"
+                    app:iconPadding="4dp"/>
+            </LinearLayout>
+
+            <!-- FILA 2 de la cuadricula -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- Quiero leer -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnQuiero"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/marron"
+                    android:text="@string/btn_quiero_leer"
+                    android:textColor="@color/white"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_quiero"
+                    app:iconGravity="textTop"
+                    app:iconSize="28dp"
+                    app:iconPadding="4dp"/>
+
+                <!-- Mi perfil -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnPerfil"
+                    android:layout_width="0dp"
+                    android:layout_height="72dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/verde"
+                    android:text="@string/btn_mi_perfil"
+                    android:textColor="@color/white"
+                    app:cornerRadius="16dp"
+                    app:icon="@drawable/ic_perfil"
+                    app:iconGravity="textTop"
+                    app:iconSize="28dp"
+                    app:iconPadding="4dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+

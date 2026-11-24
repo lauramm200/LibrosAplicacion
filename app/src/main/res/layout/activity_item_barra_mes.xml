@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- COLUMNA DE UN MES: de arriba abajo -> valor, barra, nombre del mes.
+     gravity="bottom" hace que el conjunto quede pegado a la base de la grafica.
+     El ancho y alto reales los define cada <include> desde el layout del perfil. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal|bottom"
+    android:orientation="vertical">
+
+    <!-- Paginas leidas ese mes (dato dinamico) -->
+    <TextView
+        android:id="@+id/tvValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/marron"
+        android:textSize="12sp"
+        tools:text="310" />
+
+    <!-- BARRA: alto inicial 4dp; desde Kotlin se cambiara segun las paginas.
+         tools:layout_height solo afecta a la vista previa. -->
+    <View
+        android:id="@+id/vBarra"
+        android:layout_width="24dp"
+        android:layout_height="4dp"
+        android:layout_marginVertical="4dp"
+        android:background="@color/verde"
+        tools:layout_height="90dp" />
+
+    <!-- Nombre abreviado del mes (dato dinamico) -->
+    <TextView
+        android:id="@+id/tvMes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/marron"
+        android:textSize="12sp"
+        tools:text="Jun" />
+</LinearLayout>
