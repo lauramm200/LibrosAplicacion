@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CONTENIDO DEL DIALOGO: no tiene ScrollView porque es corto.
+     La Activity lo mostrara dentro de una ventana emergente (Fase 5). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/crema"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- TITULO del dialogo -->
+    <TextView
+        android:id="@+id/tvTituloDialogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_dialogo_quiero"
+        android:textColor="@color/marron"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- TITULO DEL LIBRO que se esta guardando (dato dinamico) -->
+    <TextView
+        android:id="@+id/tvLibroDialogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/verde"
+        android:textSize="16sp"
+        tools:text="Dune" />
+
+    <!-- RECOMENDADO POR: mismo patron de campo que el login (texto libre) -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRecomendadoPor"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/hint_recomendado_por"
+        app:boxStrokeColor="@color/verde"
+        app:hintTextColor="@color/verde">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etRecomendadoPor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
+            android:singleLine="true"
+            android:textColor="@color/marron" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- VALORACION DE INTERES: etiqueta + estrellas (mismo RatingBar que Valorar) -->
+    <TextView
+        android:id="@+id/tvEtiquetaInteres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/etiqueta_interes"
+        android:textColor="@color/marron"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <RatingBar
+        android:id="@+id/ratingInteres"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:numStars="5"
+        android:progressBackgroundTint="@color/beige"
+        android:progressTint="@color/naranja"
+        android:rating="0"
+        android:secondaryProgressTint="@android:color/transparent"
+        android:stepSize="1" />
+
+    <!-- BOTONES: dos al 50% (tecnica 0dp + weight). Cancelar es "outlined" (solo borde)
+         para que Guardar destaque como accion principal. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelarDialogo"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:text="@string/btn_cancelar"
+            android:textColor="@color/naranja"
+            app:cornerRadius="16dp"
+            app:strokeColor="@color/naranja" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarDialogo"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/naranja"
+            android:text="@string/btn_guardar"
+            android:textColor="@color/white"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
+</LinearLayout>

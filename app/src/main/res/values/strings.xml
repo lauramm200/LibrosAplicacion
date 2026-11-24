@@ -114,4 +114,13 @@
     <!-- ============ BOTONES (pantalla Valorar) ============ -->
     <string name="btn_guardar_valoracion">Guardar valoración</string>
 
+    <!-- ============ TEXTOS (dialogo Quiero leer) ============ -->
+    <string name="titulo_dialogo_quiero">Añadir a Quiero leer</string>
+    <string name="hint_recomendado_por">Recomendado por</string>
+    <string name="etiqueta_interes">Tu interés por leerlo</string>
+
+    <!-- ============ BOTONES (dialogo Quiero leer) ============ -->
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_cancelar">Cancelar</string>
+
 </resources>
