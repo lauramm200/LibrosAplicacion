@@ -85,4 +85,17 @@
     <!-- ============ BOTONES (pantalla Leidos) ============ -->
     <string name="btn_editar">Editar</string>
 
+    <!-- ============ TEXTOS (pantalla Leyendo) ============ -->
+    <string name="titulo_leyendo">Me estoy leyendo</string>
+    <!-- %1$d se sustituira por el numero de libros en curso -->
+    <string name="libros_en_curso">%1$d libros en curso</string>
+    <!-- Etiqueta pequena de la tarjeta destacada -->
+    <string name="etiqueta_ahora_mismo">AHORA MISMO</string>
+    <!-- Cabecera de la lista de los demas libros -->
+    <string name="seccion_otros_en_curso">Otros en curso</string>
+
+    <!-- ============ BOTONES (pantalla Leyendo) ============ -->
+    <string name="btn_marcar_terminado">Marcar como terminado</string>
+    <string name="btn_terminar">Terminar</string>
+
 </resources>

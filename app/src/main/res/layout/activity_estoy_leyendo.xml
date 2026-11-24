@@ -1,10 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- RAIZ: igual que Leidos: contenido arriba (weight=1) y barra inferior abajo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EstoyLeyendo">
+    android:background="@color/crema"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Aqui SI usamos ScrollView: la tarjeta destacada y la lista tienen que
+         desplazarse juntas. El padding lateral va en el contenido y no en la raiz
+         para que la barra inferior ocupe todo el ancho. -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingTop="48dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="16dp">
+
+            <!-- TITULO -->
+            <TextView
+                android:id="@+id/tvTituloLeyendo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/titulo_leyendo"
+                android:textColor="@color/marron"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <!-- CONTADOR (dato dinamico) -->
+            <TextView
+                android:id="@+id/tvContadorLeyendo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/verde"
+                android:textSize="16sp"
+                tools:text="3 libros en curso" />
+
+            <!-- TARJETA DESTACADA "AHORA MISMO" -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardAhoraMismo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp">
+
+                <!-- Columna: fila superior (portada + textos) y boton debajo -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- PORTADA grande -->
+                        <ImageView
+                            android:id="@+id/ivPortadaActual"
+                            android:layout_width="96dp"
+                            android:layout_height="140dp"
+                            android:background="@color/amarillo"
+                            android:contentDescription="@string/desc_portada"
+                            android:scaleType="centerCrop" />
+
+                        <!-- Textos a la derecha de la portada -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvEtiquetaAhora"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/etiqueta_ahora_mismo"
+                                android:textColor="@color/naranja"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvTituloActual"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:textColor="@color/marron"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="Cien años de soledad" />
+
+                            <TextView
+                                android:id="@+id/tvAutorActual"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:textColor="@color/verde"
+                                android:textSize="14sp"
+                                tools:text="Gabriel García Márquez" />
+
+                            <TextView
+                                android:id="@+id/tvInicioActual"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:textColor="@color/marron"
+                                android:textSize="13sp"
+                                tools:text="Inicio: 2 nov 2026" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- BOTON MARCAR COMO TERMINADO a todo el ancho -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMarcarTerminado"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="16dp"
+                        android:backgroundTint="@color/naranja"
+                        android:text="@string/btn_marcar_terminado"
+                        android:textColor="@color/white"
+                        app:cornerRadius="16dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- CABECERA de la lista -->
+            <TextView
+                android:id="@+id/tvOtros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/seccion_otros_en_curso"
+                android:textColor="@color/marron"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- LISTA de los demas libros: height=wrap_content porque el ScrollView ya
+                 hace el scroll; nestedScrollingEnabled=false evita dos scrolls peleandose -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOtrosLeyendo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_libro_leyendo" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- BARRA INFERIOR reutilizada -->
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/barra_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

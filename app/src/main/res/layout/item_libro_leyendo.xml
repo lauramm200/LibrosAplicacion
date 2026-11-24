@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FILA DE UN LIBRO EN CURSO: portada, textos y boton Terminar en horizontal -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp">
+
+    <!-- gravity center_vertical: centra portada, textos y boton en vertical -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- PORTADA pequena -->
+        <ImageView
+            android:id="@+id/ivPortada"
+            android:layout_width="56dp"
+            android:layout_height="84dp"
+            android:background="@color/amarillo"
+            android:contentDescription="@string/desc_portada"
+            android:scaleType="centerCrop" />
+
+        <!-- TEXTOS: width=0dp + weight=1 = ocupa el espacio entre portada y boton -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/marron"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Dune" />
+
+            <!-- Reutiliza el string inicio_lectura ("Inicio: %1$s") -->
+            <TextView
+                android:id="@+id/tvInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/verde"
+                android:textSize="13sp"
+                tools:text="Inicio: 25 oct 2026" />
+        </LinearLayout>
+
+        <!-- BOTON TERMINAR: ancho segun su texto -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTerminar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/verde"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/btn_terminar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="12dp" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
