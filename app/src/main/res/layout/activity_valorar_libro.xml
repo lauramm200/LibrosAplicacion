@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RAIZ: ScrollView por si el teclado tapa la resena (igual que el login) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/crema"
+    android:fillViewport="true">
+
+    <!-- COLUMNA principal -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="48dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
+
+        <!-- TITULO de la pantalla -->
+        <TextView
+            android:id="@+id/tvTituloValorar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_valorar"
+            android:textColor="@color/marron"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!-- LIBRO QUE SE VALORA: portada a la izquierda, titulo y autor a la derecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivPortada"
+                android:layout_width="64dp"
+                android:layout_height="96dp"
+                android:background="@color/amarillo"
+                android:contentDescription="@string/desc_portada"
+                android:scaleType="centerCrop" />
+
+            <!-- width=0dp + weight=1: ocupa el espacio restante -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitulo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textColor="@color/marron"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Cien años de soledad" />
+
+                <TextView
+                    android:id="@+id/tvAutor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="@color/verde"
+                    android:textSize="14sp"
+                    tools:text="Gabriel García Márquez" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ESTRELLAS: etiqueta + RatingBar -->
+        <TextView
+            android:id="@+id/tvEtiquetaEstrellas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="@string/etiqueta_estrellas"
+            android:textColor="@color/marron"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- RatingBar: numStars = 5 estrellas; stepSize=1 = solo estrellas enteras;
+             progressTint = color de las rellenas; progressBackgroundTint = las vacias.
+             secondaryProgressTint transparente evita un color extra al pulsar. -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:numStars="5"
+            android:progressBackgroundTint="@color/beige"
+            android:progressTint="@color/naranja"
+            android:rating="0"
+            android:secondaryProgressTint="@android:color/transparent"
+            android:stepSize="1" />
+
+        <!-- PORCENTAJE DE RECOMENDACION: etiqueta a la izquierda y valor a la derecha -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <!-- width=0dp + weight=1: empuja el valor al extremo derecho -->
+            <TextView
+                android:id="@+id/tvEtiquetaRecomendacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/etiqueta_recomendacion"
+                android:textColor="@color/marron"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- Valor actual del deslizador (dato dinamico; usa el string porcentaje) -->
+            <TextView
+                android:id="@+id/tvValorRecomendacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/naranja"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="50%" />
+        </LinearLayout>
+
+        <!-- DESLIZADOR: valores de 0 a 100 de 5 en 5. labelBehavior=gone oculta la
+             burbuja flotante porque el valor ya se muestra en tvValorRecomendacion. -->
+        <com.google.android.material.slider.Slider
+            android:id="@+id/sliderRecomendacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="5"
+            android:value="50"
+            android:valueFrom="0"
+            android:valueTo="100"
+            app:labelBehavior="gone"
+            app:thumbColor="@color/naranja"
+            app:trackColorActive="@color/naranja"
+            app:trackColorInactive="@color/beige" />
+
+        <!-- RESENA: mismo patron que los campos del login.
+             textMultiLine = permite varias lineas; minLines/maxLines = alto entre 4 y 8 lineas;
+             gravity=top = el texto empieza arriba (no centrado). -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilResena"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/hint_resena"
+            app:boxStrokeColor="@color/verde"
+            app:hintTextColor="@color/verde">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etResena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:maxLines="8"
+                android:minLines="4"
+                android:textColor="@color/marron" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- BOTON GUARDAR (mismo estilo que el boton del login) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnGuardarValoracion"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/naranja"
+            android:text="@string/btn_guardar_valoracion"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="16dp" />
+    </LinearLayout>
+</ScrollView>

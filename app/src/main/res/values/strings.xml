@@ -104,4 +104,14 @@
     <!-- %1$s se sustituira por quien recomienda el libro (texto libre) -->
     <string name="recomendado_por">Recomendado por %1$s</string>
 
+    <!-- ============ TEXTOS (pantalla Valorar) ============ -->
+    <string name="titulo_valorar">Valora tu lectura</string>
+    <string name="etiqueta_estrellas">Tu valoración</string>
+    <string name="etiqueta_recomendacion">Porcentaje de recomendación</string>
+    <!-- "(opcional)" indica que la resena no es obligatoria -->
+    <string name="hint_resena">Reseña (opcional)</string>
+
+    <!-- ============ BOTONES (pantalla Valorar) ============ -->
+    <string name="btn_guardar_valoracion">Guardar valoración</string>
+
 </resources>
