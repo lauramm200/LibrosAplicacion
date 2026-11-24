@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DIALOGO DE LA POLITICA: titulo, texto con scroll y boton Cerrar.
+     Misma estructura que dialog_quiero_leer. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/crema"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- TITULO -->
+    <TextView
+        android:id="@+id/tvTituloPrivacidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_privacidad"
+        android:textColor="@color/marron"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <!-- TEXTO LARGO: el ScrollView tiene altura fija de 320dp; si el texto no cabe,
+         se desplaza dentro. En un dialogo wrap_content no se puede limitar de otra forma. -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/tvTextoPrivacidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/texto_politica_privacidad"
+            android:textColor="@color/marron"
+            android:textSize="14sp" />
+    </ScrollView>
+
+    <!-- BOTON CERRAR -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCerrarPrivacidad"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/naranja"
+        android:text="@string/btn_cerrar"
+        android:textColor="@color/white"
+        app:cornerRadius="16dp" />
+</LinearLayout>

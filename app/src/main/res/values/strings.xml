@@ -123,4 +123,15 @@
     <string name="btn_guardar">Guardar</string>
     <string name="btn_cancelar">Cancelar</string>
 
+    <!-- ============ TEXTOS (politica de privacidad) ============ -->
+    <string name="check_privacidad">He leído y acepto la política de privacidad</string>
+    <string name="enlace_privacidad">Leer política de privacidad</string>
+    <string name="titulo_privacidad">Política de privacidad</string>
+    <!-- Texto completo. \n\n = linea en blanco entre apartados.
+         ADAPTA los datos entre corchetes antes de entregar la practica. -->
+    <string name="texto_politica_privacidad">1. Responsable\nMi Biblioteca, aplicación educativa. Contacto: [tu correo electrónico].\n\n2. Datos que recogemos\nNombre de usuario y contraseña, y los datos de tu biblioteca personal: libros guardados, fechas de lectura, valoraciones, porcentajes de recomendación y reseñas.\n\n3. Finalidad\nGestionar tu cuenta y tu biblioteca de lectura, y calcular tus estadísticas de lectura. No usamos tus datos para publicidad ni los cedemos a terceros.\n\n4. Base legal\nTu consentimiento, que otorgas al marcar la casilla de aceptación al registrarte.\n\n5. Conservación\nTus datos se conservan mientras mantengas tu cuenta. Puedes pedir su eliminación en cualquier momento.\n\n6. Tus derechos\nPuedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo al contacto indicado. También puedes reclamar ante la Agencia Española de Protección de Datos (aepd.es).\n\n7. Servicios externos\nLa búsqueda de libros usa la API de Google Books, que recibe el texto que buscas.</string>
+
+    <!-- ============ BOTONES (politica de privacidad) ============ -->
+    <string name="btn_cerrar">Cerrar</string>
+
 </resources>
