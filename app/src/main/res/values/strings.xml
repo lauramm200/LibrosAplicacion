@@ -75,5 +75,14 @@
     <!-- Boton de cada resultado (btn_quiero_leer ya existe) -->
     <string name="btn_leido">Leído</string>
 
+    <!-- ============ TEXTOS (pantalla Leidos) ============ -->
+    <string name="titulo_leidos">Mis libros leídos</string>
+    <!-- %1$d se sustituira por el numero de libros -->
+    <string name="libros_estanteria">%1$d libros en tu estantería</string>
+    <!-- %1$d = porcentaje; %% es el simbolo % escrito en un string -->
+    <string name="porcentaje">%1$d%%</string>
+
+    <!-- ============ BOTONES (pantalla Leidos) ============ -->
+    <string name="btn_editar">Editar</string>
 
 </resources>

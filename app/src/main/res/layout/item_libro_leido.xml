@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- CELDA DE UN LIBRO LEIDO: tarjeta vertical (portada, titulo, %, boton).
+     El margen de 6dp, sumado al de la celda vecina, deja 12dp entre tarjetas. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- PORTADA a todo el ancho de la celda (la tarjeta recorta las esquinas) -->
+        <ImageView
+            android:id="@+id/ivPortada"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/amarillo"
+            android:contentDescription="@string/desc_portada"
+            android:scaleType="centerCrop" />
+
+        <!-- Datos bajo la portada -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Titulo: minLines=2 reserva siempre 2 lineas para que todas las
+                 tarjetas de una fila midan lo mismo -->
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:textColor="@color/marron"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Cien años de soledad" />
+
+            <!-- Porcentaje de recomendacion (dato dinamico) -->
+            <TextView
+                android:id="@+id/tvPorcentaje"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/verde"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="95%" />
+
+            <!-- Boton Editar (texto marron porque el amarillo es claro) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/amarillo"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="@string/btn_editar"
+                android:textColor="@color/marron"
+                android:textSize="13sp"
+                app:cornerRadius="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

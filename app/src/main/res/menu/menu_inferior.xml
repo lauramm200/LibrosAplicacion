@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Las 3 opciones de la barra inferior. Reutilizamos los iconos y textos ya creados. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_leidos"
+        android:icon="@drawable/ic_leidos"
+        android:title="@string/etiqueta_leidos" />
+    <item
+        android:id="@+id/nav_leyendo"
+        android:icon="@drawable/ic_leyendo"
+        android:title="@string/etiqueta_leyendo" />
+    <item
+        android:id="@+id/nav_quiero"
+        android:icon="@drawable/ic_quiero"
+        android:title="@string/btn_quiero_leer" />
+</menu>

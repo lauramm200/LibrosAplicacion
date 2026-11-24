@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- BARRA INFERIOR compartida por Leidos, Leyendo y Quiero leer.
+     app:menu = las 3 opciones; itemIconTint/itemTextColor = color segun este activa o no;
+     labelVisibilityMode="labeled" = muestra siempre el texto bajo el icono. -->
+<com.google.android.material.bottomnavigation.BottomNavigationView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottomNav"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:elevation="8dp"
+    app:itemIconTint="@color/nav_color"
+    app:itemTextColor="@color/nav_color"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/menu_inferior" />

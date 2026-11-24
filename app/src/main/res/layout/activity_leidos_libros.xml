@@ -1,10 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- RAIZ: columna a pantalla completa. Arriba, el contenido (ocupa el espacio sobrante);
+     abajo, la barra inferior pegada al borde. Sin ScrollView: la lista ya hace scroll. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LeidosLibros">
+    android:background="@color/crema"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- CONTENIDO: height=0dp + weight=1 deja sitio a la barra inferior.
+         El padding lateral va aqui y no en la raiz, para que la barra ocupe todo el ancho. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="18dp"
+        android:paddingTop="48dp"
+        android:paddingEnd="18dp">
+
+        <!-- TITULO (margen de 6dp para alinearlo con las tarjetas, que ya llevan 6dp) -->
+        <TextView
+            android:id="@+id/tvTituloLeidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="@string/titulo_leidos"
+            android:textColor="@color/marron"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!-- CONTADOR (dato dinamico) -->
+        <TextView
+            android:id="@+id/tvContadorLeidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/verde"
+            android:textSize="16sp"
+            tools:text="4 libros en tu estantería" />
+
+        <!-- CUADRICULA: GridLayoutManager con spanCount=2 = 2 columnas.
+             Se indica en el XML con layoutManager, sin escribir codigo. -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLeidos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="4"
+            tools:listitem="@layout/item_libro_leido" />
+    </LinearLayout>
+
+    <!-- BARRA INFERIOR reutilizada. Con <include> hay que repetir width/height
+         si queremos que se apliquen. -->
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/barra_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
