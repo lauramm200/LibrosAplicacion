@@ -1,10 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- RAIZ: aqui NO usamos ScrollView porque la lista (RecyclerView) ya hace scroll
+     por si misma; meter un scroll dentro de otro da problemas.
+     LinearLayout vertical: cabecera fija arriba y la lista ocupa el resto. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BusquedaLibros">
+    android:background="@color/crema"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="48dp"
+    android:paddingBottom="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- TITULO -->
+    <TextView
+        android:id="@+id/tvTituloBusqueda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/titulo_busqueda"
+        android:textColor="@color/marron"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- BARRA DE BUSQUEDA: mismo patron que los campos del login.
+         startIconDrawable = lupa a la izquierda (reutiliza ic_buscar);
+         endIconMode="clear_text" = boton X para borrar lo escrito. -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilBuscar"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="@string/hint_buscar"
+        app:boxStrokeColor="@color/verde"
+        app:endIconMode="clear_text"
+        app:hintTextColor="@color/verde"
+        app:startIconDrawable="@drawable/ic_buscar"
+        app:startIconTint="@color/verde">
+
+        <!-- imeOptions="actionSearch": el boton Enter del teclado pasa a ser una lupa;
+             singleLine evita saltos de linea -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColor="@color/marron" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- FILTROS: HorizontalScrollView permite deslizar los filtros si no caben en pantalla -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none">
+
+        <!-- ChipGroup agrupa los chips; singleSelection = solo uno activo a la vez;
+             selectionRequired = siempre hay uno seleccionado; singleLine = en una sola fila -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupFiltros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <!-- "Todos" empieza seleccionado -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodos"
+                style="@style/Chip.Libros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/chip_todos" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNovela"
+                style="@style/Chip.Libros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_novela" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFantasia"
+                style="@style/Chip.Libros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_fantasia" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipHistoria"
+                style="@style/Chip.Libros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_historia" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- CABECERA de la lista -->
+    <TextView
+        android:id="@+id/tvResultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/resultados"
+        android:textColor="@color/marron"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- LISTA DE RESULTADOS: height=0dp + weight=1 = ocupa todo el espacio que queda.
+         tools:listitem y tools:itemCount solo sirven para ver 3 filas de ejemplo en la
+         vista previa; en la app real las filas las creara un adaptador (Fase 5). -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResultados"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_libro_busqueda" />
+</LinearLayout>

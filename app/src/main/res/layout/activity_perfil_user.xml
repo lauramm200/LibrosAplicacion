@@ -194,38 +194,38 @@
 
                     <include
                         android:id="@+id/barra1"
-                        layout="@layout/activity_item_barra_mes"
+                        layout="@layout/item_barra_mes"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <include
                         android:id="@+id/barra2"
-                        layout="@layout/activity_item_barra_mes"                        android:layout_width="0dp"
+                        layout="@layout/item_barra_mes"                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <include
                         android:id="@+id/barra3"
-                        layout="@layout/activity_item_barra_mes"                        android:layout_width="0dp"
+                        layout="@layout/item_barra_mes"                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <include
                         android:id="@+id/barra4"
-                        layout="@layout/activity_item_barra_mes"                        android:layout_width="0dp"
+                        layout="@layout/item_barra_mes"                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <include
                         android:id="@+id/barra5"
-                        layout="@layout/activity_item_barra_mes"                        android:layout_width="0dp"
+                        layout="@layout/item_barra_mes"                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
 
                     <include
                         android:id="@+id/barra6"
-                        layout="@layout/activity_item_barra_mes"                        android:layout_width="0dp"
+                        layout="@layout/item_barra_mes"                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1" />
                 </LinearLayout>

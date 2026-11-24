@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo del filtro: naranja si esta seleccionado, blanco si no -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/naranja" android:state_checked="true" />
+    <item android:color="@color/white" />
+</selector>

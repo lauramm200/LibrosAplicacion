@@ -58,5 +58,22 @@
     <!-- %1$d se sustituira por la media (numero entero) -->
     <string name="media_paginas">Páginas leídas por mes · media: %1$d págs./mes</string>
 
+    <!-- ============ TEXTOS (pantalla Busqueda) ============ -->
+    <string name="titulo_busqueda">Buscar libros</string>
+    <!-- Texto de ayuda dentro de la barra de busqueda -->
+    <string name="hint_buscar">Buscar por título o autor</string>
+    <string name="resultados">Resultados</string>
+    <!-- %1$d se sustituira por el numero de paginas -->
+    <string name="paginas_libro">%1$d págs.</string>
+
+    <!-- ============ BOTONES (pantalla Busqueda) ============ -->
+    <!-- Filtros de genero -->
+    <string name="chip_todos">Todos</string>
+    <string name="chip_novela">Novela</string>
+    <string name="chip_fantasia">Fantasía</string>
+    <string name="chip_historia">Historia</string>
+    <!-- Boton de cada resultado (btn_quiero_leer ya existe) -->
+    <string name="btn_leido">Leído</string>
+
 
 </resources>

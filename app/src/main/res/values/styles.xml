@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Estilo comun de los 4 filtros: se define una vez y se aplica a todos -->
+    <style name="Chip.Libros" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_fondo</item>
+        <item name="android:textColor">@color/chip_texto</item>
+        <item name="chipStrokeColor">@color/naranja</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <!-- Oculta el check que Material pinta por defecto al seleccionar -->
+        <item name="checkedIconVisible">false</item>
+    </style>
+</resources>
