@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FILA DE UN LIBRO "QUIERO LEER": puesto, portada y textos en horizontal.
+     Misma estructura que item_libro_leyendo, cambiando el boton por el numero. -->
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="2dp">
+
+    <!-- gravity center_vertical: centra numero, portada y textos en vertical -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- PUESTO en la lista (1, 2, 3...). minWidth reserva el mismo ancho
+             aunque el numero tenga una o dos cifras, para que las portadas queden alineadas -->
+        <TextView
+            android:id="@+id/tvPuesto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:minWidth="28dp"
+            android:textColor="@color/naranja"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="1" />
+
+        <!-- PORTADA pequena -->
+        <ImageView
+            android:id="@+id/ivPortada"
+            android:layout_width="56dp"
+            android:layout_height="84dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/amarillo"
+            android:contentDescription="@string/desc_portada"
+            android:scaleType="centerCrop" />
+
+        <!-- TEXTOS: width=0dp + weight=1 = ocupa el espacio restante -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/marron"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Dune" />
+
+            <TextView
+                android:id="@+id/tvAutor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/verde"
+                android:textSize="14sp"
+                tools:text="Frank Herbert" />
+
+            <!-- Quien lo recomienda (dato dinamico; usa el string recomendado_por) -->
+            <TextView
+                android:id="@+id/tvRecomendadoPor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/marron"
+                android:textSize="13sp"
+                tools:text="Recomendado por Marta" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

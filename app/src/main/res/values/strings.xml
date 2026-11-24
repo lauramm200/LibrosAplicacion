@@ -98,4 +98,10 @@
     <string name="btn_marcar_terminado">Marcar como terminado</string>
     <string name="btn_terminar">Terminar</string>
 
+    <!-- ============ TEXTOS (pantalla Quiero leer) ============ -->
+    <string name="titulo_quiero_leer">Quiero leer</string>
+    <string name="subtitulo_quiero_leer">Ordenados por tu interés</string>
+    <!-- %1$s se sustituira por quien recomienda el libro (texto libre) -->
+    <string name="recomendado_por">Recomendado por %1$s</string>
+
 </resources>

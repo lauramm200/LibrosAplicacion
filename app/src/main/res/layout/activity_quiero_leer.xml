@@ -1,10 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<!-- RAIZ: igual que Leidos: contenido arriba (weight=1) y barra inferior abajo.
+     Sin ScrollView: la lista ya hace scroll por si misma. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuieroLeer">
+    android:background="@color/crema"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- CONTENIDO: el padding lateral va aqui y no en la raiz,
+         para que la barra inferior ocupe todo el ancho -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingTop="48dp"
+        android:paddingEnd="24dp">
+
+        <!-- TITULO -->
+        <TextView
+            android:id="@+id/tvTituloQuiero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/titulo_quiero_leer"
+            android:textColor="@color/marron"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <!-- SUBTITULO -->
+        <TextView
+            android:id="@+id/tvSubtituloQuiero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/subtitulo_quiero_leer"
+            android:textColor="@color/verde"
+            android:textSize="16sp" />
+
+        <!-- LISTA: height=0dp + weight=1 = ocupa el espacio que queda.
+             clipToPadding=false deja que la ultima fila no quede pegada a la barra. -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvQuieroLeer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_libro_quiero" />
+    </LinearLayout>
+
+    <!-- BARRA INFERIOR reutilizada -->
+    <include
+        android:id="@+id/barraInferior"
+        layout="@layout/barra_inferior"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
