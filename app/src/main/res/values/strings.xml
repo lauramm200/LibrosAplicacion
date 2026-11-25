@@ -15,6 +15,14 @@
     <!-- Texto pulsable inferior para cambiar a la pestaña de registro -->
     <string name="cambiar_a_registro">¿No tienes cuenta? Regístrate</string>
 
+    <!-- ============ VALIDACIÓN (pantalla Login/Registro) ============ -->
+    <string name="btn_registrarse">Registrarse</string>
+    <string name="cambiar_a_login">¿Ya tienes cuenta? Inicia sesión</string>
+    <string name="error_usuario_vacio">El usuario no puede estar vacío</string>
+    <string name="error_contrasena_corta">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="error_privacidad">Debes aceptar la política de privacidad</string>
+
+
     <!-- ============ BOTONES (pantalla Login/Registro) ============ -->
     <!-- Pestañas superiores -->
     <string name="tab_iniciar_sesion">Iniciar sesión</string>
@@ -133,5 +141,7 @@
 
     <!-- ============ BOTONES (politica de privacidad) ============ -->
     <string name="btn_cerrar">Cerrar</string>
+    <string name="cerrar">Cerrar</string>
+
 
 </resources>
