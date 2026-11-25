@@ -6,7 +6,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 // Configura la barra inferior de Leídos, Leyendo y Quiero leer.
 // "actual" = id de la opción que corresponde a la pantalla donde se llama.
@@ -37,4 +39,10 @@ fun Activity.ajustarBordes(vista: View) {
         v.setPadding(barras.left, barras.top, barras.right, barras.bottom)
         insets
     }
+}
+
+// Convierte milisegundos a texto tipo "2 nov 2026"
+fun formatearFecha(milisegundos: Long?): String {
+    if (milisegundos == null) return ""
+    return SimpleDateFormat("d MMM yyyy", Locale("es", "ES")).format(Date(milisegundos))
 }

@@ -102,6 +102,7 @@
     <string name="etiqueta_ahora_mismo">AHORA MISMO</string>
     <!-- Cabecera de la lista de los demas libros -->
     <string name="seccion_otros_en_curso">Otros en curso</string>
+    <string name="contador_leyendo">%1$d libros en curso</string>
 
     <!-- ============ BOTONES (pantalla Leyendo) ============ -->
     <string name="btn_marcar_terminado">Marcar como terminado</string>
