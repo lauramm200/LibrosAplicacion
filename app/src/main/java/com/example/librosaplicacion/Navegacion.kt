@@ -33,10 +33,16 @@ fun Activity.configurarBarraInferior(barra: BottomNavigationView, actual: Int) {
 }
 
 // Añade padding igual al tamaño de las barras del sistema para que no tapen el contenido
-fun Activity.ajustarBordes(vista: View) {
+fun ajustarBordes(vista: View) {
+    // Padding original del XML, guardado antes de que el listener lo modifique
+    val izq = vista.paddingLeft
+    val arr = vista.paddingTop
+    val der = vista.paddingRight
+    val aba = vista.paddingBottom
+
     ViewCompat.setOnApplyWindowInsetsListener(vista) { v, insets ->
         val barras = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        v.setPadding(barras.left, barras.top, barras.right, barras.bottom)
+        v.setPadding(izq + barras.left, arr + barras.top, der + barras.right, aba + barras.bottom)
         insets
     }
 }
