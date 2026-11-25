@@ -30,10 +30,10 @@ class EstoyLeyendo : AppCompatActivity() {
             binding.tvTituloActual.text = actual.titulo
             binding.tvAutorActual.text = actual.autor
             binding.tvInicioActual.text = getString(R.string.inicio_lectura, formatearFecha(actual.fechaInicio))
+            binding.btnMarcarTerminado.setOnClickListener { abrirValorar(actual) }
         } else {
             binding.cardAhoraMismo.visibility = View.GONE
             binding.tvOtros.visibility = View.GONE
         }
-        binding.rvOtrosLeyendo.adapter = AdaptadorLeyendo(leyendo.drop(1))
-    }
+        binding.rvOtrosLeyendo.adapter = AdaptadorLeyendo(leyendo.drop(1)) { abrirValorar(it) }    }
 }

@@ -121,6 +121,7 @@
     <string name="etiqueta_recomendacion">Porcentaje de recomendación</string>
     <!-- "(opcional)" indica que la resena no es obligatoria -->
     <string name="hint_resena">Reseña (opcional)</string>
+    <string name="error_estrellas">Valora el libro con al menos 1 estrella</string>
 
     <!-- ============ BOTONES (pantalla Valorar) ============ -->
     <string name="btn_guardar_valoracion">Guardar valoración</string>

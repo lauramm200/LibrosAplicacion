@@ -6,6 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.librosaplicacion.model.Libro
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -51,4 +52,14 @@ fun ajustarBordes(vista: View) {
 fun formatearFecha(milisegundos: Long?): String {
     if (milisegundos == null) return ""
     return SimpleDateFormat("d MMM yyyy", Locale("es", "ES")).format(Date(milisegundos))
+}
+
+// Abre la pantalla de valorar enviándole los datos del libro terminado
+fun Activity.abrirValorar(libro: Libro) {
+    startActivity(
+        Intent(this, ValorarLibro::class.java)
+            .putExtra("volumeId", libro.volumeId)
+            .putExtra("titulo", libro.titulo)
+            .putExtra("autor", libro.autor)
+    )
 }
