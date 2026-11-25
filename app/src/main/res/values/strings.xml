@@ -65,6 +65,7 @@
     <string name="titulo_tasa_mensual">Tasa de lectura mensual</string>
     <!-- %1$d se sustituira por la media (numero entero) -->
     <string name="media_paginas">Páginas leídas por mes · media: %1$d págs./mes</string>
+    <string name="media_mensual">Páginas leídas por mes · media: %1$d págs./mes</string>
 
     <!-- ============ TEXTOS (pantalla Busqueda) ============ -->
     <string name="titulo_busqueda">Buscar libros</string>

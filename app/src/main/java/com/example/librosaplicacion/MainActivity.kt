@@ -35,8 +35,9 @@ class MainActivity : AppCompatActivity() {
         binding.btnLeidos.setOnClickListener { abrir(LeidosLibros::class.java) }
         binding.btnLeyendo.setOnClickListener { abrir(EstoyLeyendo::class.java) }
         binding.btnQuiero.setOnClickListener { abrir(QuieroLeer::class.java) }
-        binding.btnPerfil.setOnClickListener { abrir(PerfilUser::class.java) }
-    }
+        binding.btnPerfil.setOnClickListener {
+            startActivity(Intent(this, PerfilUser::class.java).putExtra("usuario", usuario))
+        }    }
 
     // Función única para abrir cualquier pantalla (evita repetir el Intent 6 veces)
     private fun abrir(destino: Class<*>) {
