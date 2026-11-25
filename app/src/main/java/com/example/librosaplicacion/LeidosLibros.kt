@@ -3,18 +3,26 @@ package com.example.librosaplicacion
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.librosaplicacion.data.LibrosXmlParser
+import com.example.librosaplicacion.databinding.ActivityLeidosLibrosBinding
+import com.example.librosaplicacion.model.Estado
 
 class LeidosLibros : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLeidosLibrosBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_leidos_libros)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityLeidosLibrosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        ajustarBordes(binding.root)
+        configurarBarraInferior(binding.barraInferior.bottomNav, R.id.nav_leidos)
+
+        // Solo los libros en estado LEIDO
+        val leidos = LibrosXmlParser.cargar(this).filter { it.estado == Estado.LEIDO }
+
+        binding.tvContadorLeidos.text = getString(R.string.contador_leidos, leidos.size)
+        binding.rvLeidos.adapter = AdaptadorLeidos(leidos)
     }
 }
