@@ -5,7 +5,11 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librosaplicacion.databinding.ActivityValorarLibroBinding
-
+import androidx.lifecycle.lifecycleScope
+import com.example.librosaplicacion.data.AppDatabase
+import com.example.librosaplicacion.data.Estado
+import com.example.librosaplicacion.data.Libro
+import kotlinx.coroutines.launch
 class ValorarLibro : AppCompatActivity() {
 
     private lateinit var binding: ActivityValorarLibroBinding
@@ -42,8 +46,30 @@ class ValorarLibro : AppCompatActivity() {
         }
         val porcentaje = binding.sliderRecomendacion.value.toInt()
         val resena = binding.etResena.text.toString().trim().ifEmpty { null }
+        val volumeId = intent.getStringExtra("volumeId") ?: return
 
-        // Aquí se guardarán estrellas, porcentaje y resena en Room (siguiente fase)
-        finish()
+        lifecycleScope.launch {
+            val dao = AppDatabase.obtener(this@ValorarLibro).libroDao()
+
+            // Si ya estaba en Room (venía de Leyendo) se conservan sus datos; si viene de la búsqueda, se crea
+            val base = dao.obtener(volumeId) ?: Libro(
+                volumeId = volumeId,
+                titulo = intent.getStringExtra("titulo") ?: "",
+                autor = intent.getStringExtra("autor") ?: "",
+                paginas = intent.getIntExtra("paginas", 0),
+                portada = intent.getStringExtra("portada")
+            )
+
+            dao.guardar(
+                base.copy(
+                    estado = Estado.LEIDO,
+                    fechaFin = base.fechaFin ?: System.currentTimeMillis(),
+                    estrellas = estrellas,
+                    porcentaje = porcentaje,
+                    resena = resena
+                )
+            )
+            finish()
+        }
     }
 }

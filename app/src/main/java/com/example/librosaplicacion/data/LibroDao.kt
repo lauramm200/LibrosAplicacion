@@ -19,4 +19,7 @@ interface LibroDao {
 
     @Query("SELECT strftime('%Y-%m', fechaFin / 1000, 'unixepoch') AS mes, SUM(paginas) AS paginas FROM libros WHERE estado = 'LEIDO' GROUP BY mes ORDER BY mes")
     fun paginasPorMes(): Flow<List<PaginasMes>>
+
+    @Query("SELECT * FROM libros WHERE volumeId = :volumeId")
+    suspend fun obtener(volumeId: String): Libro?
 }

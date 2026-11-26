@@ -7,8 +7,11 @@ import com.example.librosaplicacion.databinding.ItemLibroBusquedaBinding
 import com.example.librosaplicacion.data.Libro
 
 // Rellena cada fila de resultados (item_libro_busqueda.xml)
-class AdaptadorBusqueda(private var libros: List<Libro>) :
-    RecyclerView.Adapter<AdaptadorBusqueda.Holder>() {
+class AdaptadorBusqueda(
+    private var libros: List<Libro>,
+    private val alQuerer: (Libro) -> Unit,
+    private val alLeido: (Libro) -> Unit
+) : RecyclerView.Adapter<AdaptadorBusqueda.Holder>() {
 
     class Holder(val binding: ItemLibroBusquedaBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -22,6 +25,8 @@ class AdaptadorBusqueda(private var libros: List<Libro>) :
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvAutor.text = libro.autor
         holder.binding.tvPaginas.text = holder.itemView.context.getString(R.string.paginas_libro, libro.paginas)
+        holder.binding.btnQuieroLeer.setOnClickListener { alQuerer(libro) }
+        holder.binding.btnLeido.setOnClickListener { alLeido(libro) }
     }
 
     // Cambia la lista mostrada (nuevos resultados de una búsqueda) y refresca la pantalla

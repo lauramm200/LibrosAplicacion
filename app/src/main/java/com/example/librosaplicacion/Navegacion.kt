@@ -61,5 +61,7 @@ fun Activity.abrirValorar(libro: Libro) {
             .putExtra("volumeId", libro.volumeId)
             .putExtra("titulo", libro.titulo)
             .putExtra("autor", libro.autor)
+            .putExtra("paginas", libro.paginas)
+            .putExtra("portada", libro.portada)
     )
 }
