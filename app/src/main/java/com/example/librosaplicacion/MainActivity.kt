@@ -2,11 +2,16 @@ package com.example.librosaplicacion
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.librosaplicacion.data.AppDatabase
+import com.example.librosaplicacion.data.Estado
 import com.example.librosaplicacion.databinding.ActivityBienvenidaBinding
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +42,23 @@ class MainActivity : AppCompatActivity() {
         binding.btnQuiero.setOnClickListener { abrir(QuieroLeer::class.java) }
         binding.btnPerfil.setOnClickListener {
             startActivity(Intent(this, PerfilUser::class.java).putExtra("usuario", usuario))
-        }    }
+        }
+
+        // Tarjeta "Seguir leyendo": el libro que empezó más recientemente (se oculta si no hay ninguno)
+        lifecycleScope.launch {
+            AppDatabase.obtener(this@MainActivity).libroDao().porEstado(Estado.LEYENDO)
+                .collect { libros ->
+                    val actual = libros.maxByOrNull { it.fechaInicio ?: 0L }
+                    binding.cardSeguirLeyendo.visibility = if (actual != null) View.VISIBLE else View.GONE
+
+                    if (actual != null) {
+                        binding.tvLibroTitulo.text = actual.titulo
+                        binding.tvLibroInicio.text =
+                            getString(R.string.inicio_lectura, formatearFecha(actual.fechaInicio))
+                    }
+                }
+        }
+    }
 
     // Función única para abrir cualquier pantalla (evita repetir el Intent 6 veces)
     private fun abrir(destino: Class<*>) {
