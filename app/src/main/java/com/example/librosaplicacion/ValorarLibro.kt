@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.librosaplicacion.databinding.ActivityValorarLibroBinding
 import androidx.lifecycle.lifecycleScope
 import com.example.librosaplicacion.data.AppDatabase
 import com.example.librosaplicacion.data.Estado
 import com.example.librosaplicacion.data.Libro
+import com.example.librosaplicacion.databinding.ActivityValorarLibroBinding
 import kotlinx.coroutines.launch
+
 class ValorarLibro : AppCompatActivity() {
 
     private lateinit var binding: ActivityValorarLibroBinding
@@ -21,7 +22,7 @@ class ValorarLibro : AppCompatActivity() {
         setContentView(binding.root)
         ajustarBordes(binding.root)
 
-        // Datos del libro recibidos desde Leyendo
+        // Datos del libro recibidos desde Leyendo, Búsqueda o Leídos
         binding.tvTitulo.text = intent.getStringExtra("titulo") ?: ""
         binding.tvAutor.text = intent.getStringExtra("autor") ?: ""
 
@@ -32,6 +33,20 @@ class ValorarLibro : AppCompatActivity() {
         }
 
         binding.btnGuardarValoracion.setOnClickListener { guardar() }
+
+        // Si el libro ya estaba valorado (edición), se rellenan los campos con sus datos
+        val volumeId = intent.getStringExtra("volumeId")
+        if (volumeId != null) {
+            lifecycleScope.launch {
+                val libro = AppDatabase.obtener(this@ValorarLibro).libroDao().obtener(volumeId)
+                val estrellas = libro?.estrellas
+                if (libro != null && estrellas != null) {
+                    binding.ratingBar.rating = estrellas.toFloat()
+                    binding.sliderRecomendacion.value = (libro.porcentaje ?: 50).toFloat()
+                    binding.etResena.setText(libro.resena)
+                }
+            }
+        }
     }
 
     private fun mostrarPorcentaje(valor: Int) {
@@ -51,7 +66,7 @@ class ValorarLibro : AppCompatActivity() {
         lifecycleScope.launch {
             val dao = AppDatabase.obtener(this@ValorarLibro).libroDao()
 
-            // Si ya estaba en Room (venía de Leyendo) se conservan sus datos; si viene de la búsqueda, se crea
+            // Si ya estaba en Room (venía de Leyendo o Leídos) se conservan sus datos; si viene de la búsqueda, se crea
             val base = dao.obtener(volumeId) ?: Libro(
                 volumeId = volumeId,
                 titulo = intent.getStringExtra("titulo") ?: "",

@@ -7,8 +7,10 @@ import com.example.librosaplicacion.databinding.ItemLibroLeidoBinding
 import com.example.librosaplicacion.data.Libro
 
 // Rellena cada celda de la cuadrícula (item_libro_leido.xml) con los datos de un libro
-class AdaptadorLeidos(private val libros: List<Libro>) :
-    RecyclerView.Adapter<AdaptadorLeidos.Holder>() {
+class AdaptadorLeidos(
+    private val libros: List<Libro>,
+    private val alEditar: (Libro) -> Unit
+) : RecyclerView.Adapter<AdaptadorLeidos.Holder>() {
 
     // Guarda las vistas de una celda para no buscarlas cada vez que se reutiliza
     class Holder(val binding: ItemLibroLeidoBinding) : RecyclerView.ViewHolder(binding.root)
@@ -26,5 +28,7 @@ class AdaptadorLeidos(private val libros: List<Libro>) :
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvPorcentaje.text = holder.itemView.context
             .getString(R.string.porcentaje, libro.porcentaje ?: 0)
+        holder.binding.btnEditar.setOnClickListener { alEditar(libro) }
     }
 }
+

@@ -27,7 +27,7 @@ class LeidosLibros : AppCompatActivity() {
                     // Los terminados más recientemente, primero
                     val leidos = libros.sortedByDescending { it.fechaFin ?: 0L }
                     binding.tvContadorLeidos.text = getString(R.string.contador_leidos, leidos.size)
-                    binding.rvLeidos.adapter = AdaptadorLeidos(leidos)
+                    binding.rvLeidos.adapter = AdaptadorLeidos(leidos) { abrirValorar(it) }
                 }
         }
     }
