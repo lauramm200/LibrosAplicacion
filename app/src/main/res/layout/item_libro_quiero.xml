@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- FILA DE UN LIBRO "QUIERO LEER": puesto, portada y textos en horizontal.
+<!-- FILA DE UN LIBRO "QUIERO LEER": puesto, portada, textos y boton en horizontal.
      Misma estructura que item_libro_leyendo, cambiando el boton por el numero. -->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
     app:cardCornerRadius="20dp"
     app:cardElevation="2dp">
 
-    <!-- gravity center_vertical: centra numero, portada y textos en vertical -->
+    <!-- gravity center_vertical: centra numero, portada, textos y boton en vertical -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -84,5 +84,20 @@
                 android:textSize="13sp"
                 tools:text="Recomendado por Marta" />
         </LinearLayout>
+
+        <!-- BOTON EMPEZAR: pasa el libro a "Leyendo". wrap_content = ancho justo para el texto;
+             insetTop/insetBottom = 0 quita el margen invisible que Material anade. -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnEmpezar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/naranja"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:text="@string/btn_empezar"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

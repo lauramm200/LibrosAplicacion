@@ -23,5 +23,7 @@ interface LibroDao {
     @Query("SELECT * FROM libros WHERE volumeId = :volumeId")
     suspend fun obtener(volumeId: String): Libro?
 
+    @Query("SELECT * FROM libros")
+    fun todos(): Flow<List<Libro>>
 
 }

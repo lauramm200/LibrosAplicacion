@@ -150,5 +150,6 @@
     <string name="error_busqueda">No se pudo buscar. Revisa tu conexión.</string>
     <string name="libro_guardado">Libro guardado en Quiero leer</string>
     <string name="libro_ya_guardado">Este libro ya está en tu biblioteca</string>
+    <string name="btn_empezar">Empezar</string>
 
 </resources>

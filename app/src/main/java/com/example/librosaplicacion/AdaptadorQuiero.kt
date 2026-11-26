@@ -8,8 +8,10 @@ import com.example.librosaplicacion.databinding.ItemLibroQuieroBinding
 import com.example.librosaplicacion.data.Libro
 
 // Rellena cada fila de la lista "Quiero leer" (item_libro_quiero.xml)
-class AdaptadorQuiero(private val libros: List<Libro>) :
-    RecyclerView.Adapter<AdaptadorQuiero.Holder>() {
+class AdaptadorQuiero(
+    private val libros: List<Libro>,
+    private val alEmpezar: (Libro) -> Unit
+) : RecyclerView.Adapter<AdaptadorQuiero.Holder>() {
 
     class Holder(val binding: ItemLibroQuieroBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -30,6 +32,8 @@ class AdaptadorQuiero(private val libros: List<Libro>) :
         if (recomendado != null) {
             holder.binding.tvRecomendadoPor.text =
                 holder.itemView.context.getString(R.string.recomendado_por, recomendado)
+            holder.binding.btnEmpezar.setOnClickListener { alEmpezar(libro) }
+
         }
     }
 }

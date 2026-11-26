@@ -3,11 +3,13 @@ package com.example.librosaplicacion
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import com.example.librosaplicacion.data.LibrosXmlParser
-import com.example.librosaplicacion.databinding.ActivityPerfilUserBinding
-import com.example.librosaplicacion.databinding.ItemBarraMesBinding
+import androidx.lifecycle.lifecycleScope
+import com.example.librosaplicacion.data.AppDatabase
 import com.example.librosaplicacion.data.Estado
 import com.example.librosaplicacion.data.Libro
+import com.example.librosaplicacion.databinding.ActivityPerfilUserBinding
+import com.example.librosaplicacion.databinding.ItemBarraMesBinding
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -28,8 +30,14 @@ class PerfilUser : AppCompatActivity() {
         binding.tvSaludo.text = getString(R.string.saludo, usuario)
         binding.tvLectorDesde.text = getString(R.string.lector_desde, Calendar.getInstance().get(Calendar.YEAR).toString())
 
+        // Las estadísticas se recalculan cada vez que cambia la tabla
+        lifecycleScope.launch {
+            AppDatabase.obtener(this@PerfilUser).libroDao().todos().collect { mostrarEstadisticas(it) }
+        }
+    }
+
+    private fun mostrarEstadisticas(libros: List<Libro>) {
         // Contadores por estado
-        val libros = LibrosXmlParser.cargar(this)
         val leidos = libros.filter { it.estado == Estado.LEIDO }
         binding.tvNumLeidos.text = leidos.size.toString()
         binding.tvNumLeyendo.text = libros.count { it.estado == Estado.LEYENDO }.toString()
