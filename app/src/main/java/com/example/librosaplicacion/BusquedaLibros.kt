@@ -1,12 +1,17 @@
 package com.example.librosaplicacion
 
 import android.os.Bundle
+import android.util.Log
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.librosaplicacion.data.LibrosXmlParser
+import com.example.librosaplicacion.api.RetrofitClient
+import com.example.librosaplicacion.api.aLibro
 import com.example.librosaplicacion.databinding.ActivityBusquedaLibrosBinding
+import kotlinx.coroutines.launch
 
 class BusquedaLibros : AppCompatActivity() {
 
@@ -20,8 +25,8 @@ class BusquedaLibros : AppCompatActivity() {
         setContentView(binding.root)
         ajustarBordes(binding.root)
 
-        // Lista inicial: todos los libros del XML
-        adaptador = AdaptadorBusqueda(LibrosXmlParser.cargar(this))
+        // La lista empieza vacía: se llena al buscar
+        adaptador = AdaptadorBusqueda(emptyList())
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adaptador
 
@@ -34,12 +39,19 @@ class BusquedaLibros : AppCompatActivity() {
         }
     }
 
-    // Filtra los libros cuyo título o autor contienen el texto escrito
+    // Pide a Google Books los libros que coinciden con el texto y los muestra
     private fun buscar() {
         val texto = binding.etBuscar.text.toString().trim()
-        val resultados = LibrosXmlParser.cargar(this).filter {
-            it.titulo.contains(texto, ignoreCase = true) || it.autor.contains(texto, ignoreCase = true)
+        if (texto.isEmpty()) return
+
+        lifecycleScope.launch {
+            try {
+                val respuesta = RetrofitClient.api.buscar(texto)
+                adaptador.actualizar(respuesta.items.orEmpty().map { it.aLibro() })
+            } catch (e: Exception) {
+                Log.e("BusquedaLibros", "Error al buscar", e)
+                Toast.makeText(this@BusquedaLibros, R.string.error_busqueda, Toast.LENGTH_SHORT).show()
+            }
         }
-        adaptador.actualizar(resultados)
     }
 }

@@ -147,5 +147,6 @@
     <string name="btn_cerrar">Cerrar</string>
     <string name="cerrar">Cerrar</string>
 
+    <string name="error_busqueda">No se pudo buscar. Revisa tu conexión.</string>
 
 </resources>
