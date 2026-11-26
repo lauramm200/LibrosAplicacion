@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.librosaplicacion.databinding.ItemLibroLeidoBinding
-import com.example.librosaplicacion.model.Libro
+import com.example.librosaplicacion.data.Libro
 
 // Rellena cada celda de la cuadrícula (item_libro_leido.xml) con los datos de un libro
 class AdaptadorLeidos(private val libros: List<Libro>) :
@@ -25,6 +25,6 @@ class AdaptadorLeidos(private val libros: List<Libro>) :
         val libro = libros[position]
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvPorcentaje.text = holder.itemView.context
-            .getString(R.string.porcentaje, libro.porcentajeRecomendacion ?: 0)
+            .getString(R.string.porcentaje, libro.porcentaje ?: 0)
     }
 }

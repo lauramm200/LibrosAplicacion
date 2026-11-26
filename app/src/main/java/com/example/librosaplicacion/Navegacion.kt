@@ -6,7 +6,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import android.view.View
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.librosaplicacion.model.Libro
+import com.example.librosaplicacion.data.Libro
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

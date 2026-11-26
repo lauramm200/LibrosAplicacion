@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.librosaplicacion.databinding.ItemLibroQuieroBinding
-import com.example.librosaplicacion.model.Libro
+import com.example.librosaplicacion.data.Libro
 
 // Rellena cada fila de la lista "Quiero leer" (item_libro_quiero.xml)
 class AdaptadorQuiero(private val libros: List<Libro>) :

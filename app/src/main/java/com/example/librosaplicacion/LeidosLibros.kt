@@ -5,7 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librosaplicacion.data.LibrosXmlParser
 import com.example.librosaplicacion.databinding.ActivityLeidosLibrosBinding
-import com.example.librosaplicacion.model.Estado
+import com.example.librosaplicacion.data.Estado
 
 class LeidosLibros : AppCompatActivity() {
 

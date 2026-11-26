@@ -3,8 +3,6 @@ package com.example.librosaplicacion.data // Paquete donde se ubican las clases 
 import android.content.Context                        // Permite acceder a recursos globales del sistema Android
 import android.util.Xml                              // Proporciona utilidades para el procesamiento de XML en Android
 import com.example.librosaplicacion.R                 // Acceso a los recursos de la aplicación (R.raw.libros)
-import com.example.librosaplicacion.model.Estado     // Importa el Enum con los estados de lectura del libro
-import com.example.librosaplicacion.model.Libro      // Importa la clase de modelo Libro
 import org.xmlpull.v1.XmlPullParser                  // Clase encargada de parsear elementos XML paso a paso
 
 // Objeto singleton responsable de leer y parsear el archivo XML de libros

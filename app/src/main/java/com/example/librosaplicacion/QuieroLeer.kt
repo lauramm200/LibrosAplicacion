@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.librosaplicacion.data.LibrosXmlParser
 import com.example.librosaplicacion.databinding.ActivityQuieroLeerBinding
-import com.example.librosaplicacion.model.Estado
+import com.example.librosaplicacion.data.Estado
 
 class QuieroLeer : AppCompatActivity() {
 

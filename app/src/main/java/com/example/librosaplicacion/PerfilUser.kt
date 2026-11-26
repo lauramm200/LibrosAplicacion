@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.librosaplicacion.data.LibrosXmlParser
 import com.example.librosaplicacion.databinding.ActivityPerfilUserBinding
 import com.example.librosaplicacion.databinding.ItemBarraMesBinding
-import com.example.librosaplicacion.model.Estado
-import com.example.librosaplicacion.model.Libro
+import com.example.librosaplicacion.data.Estado
+import com.example.librosaplicacion.data.Libro
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -26,7 +26,7 @@ class PerfilUser : AppCompatActivity() {
         // Cabecera
         val usuario = intent.getStringExtra("usuario") ?: ""
         binding.tvSaludo.text = getString(R.string.saludo, usuario)
-        binding.tvLectorDesde.text = getString(R.string.lector_desde, Calendar.getInstance().get(Calendar.YEAR))
+        binding.tvLectorDesde.text = getString(R.string.lector_desde, Calendar.getInstance().get(Calendar.YEAR).toString())
 
         // Contadores por estado
         val libros = LibrosXmlParser.cargar(this)

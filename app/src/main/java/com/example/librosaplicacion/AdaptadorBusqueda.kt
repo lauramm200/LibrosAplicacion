@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.librosaplicacion.databinding.ItemLibroBusquedaBinding
-import com.example.librosaplicacion.model.Libro
+import com.example.librosaplicacion.data.Libro
 
 // Rellena cada fila de resultados (item_libro_busqueda.xml)
 class AdaptadorBusqueda(private var libros: List<Libro>) :

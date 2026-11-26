@@ -6,7 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.example.librosaplicacion.data.LibrosXmlParser
 import com.example.librosaplicacion.databinding.ActivityEstoyLeyendoBinding
-import com.example.librosaplicacion.model.Estado
+import com.example.librosaplicacion.data.Estado
 
 class EstoyLeyendo : AppCompatActivity() {
 
