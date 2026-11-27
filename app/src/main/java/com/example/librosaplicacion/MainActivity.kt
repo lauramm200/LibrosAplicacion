@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         // Tarjeta "Seguir leyendo": el libro que empezó más recientemente (se oculta si no hay ninguno)
         lifecycleScope.launch {
-            AppDatabase.obtener(this@MainActivity).libroDao().porEstado(Estado.LEYENDO)
+            AppDatabase.obtener(this@MainActivity).libroDao().porEstado(usuario, Estado.LEYENDO)
                 .collect { libros ->
                     val actual = libros.maxByOrNull { it.fechaInicio ?: 0L }
                     binding.cardSeguirLeyendo.visibility = if (actual != null) View.VISIBLE else View.GONE

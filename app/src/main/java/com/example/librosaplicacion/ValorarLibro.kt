@@ -39,7 +39,7 @@ class ValorarLibro : AppCompatActivity() {
         val volumeId = intent.getStringExtra("volumeId")
         if (volumeId != null) {
             lifecycleScope.launch {
-                val libro = AppDatabase.obtener(this@ValorarLibro).libroDao().obtener(volumeId)
+                val libro = AppDatabase.obtener(this@ValorarLibro).libroDao().obtener(volumeId, obtenerUsuarioActual())
                 val estrellas = libro?.estrellas
                 if (libro != null && estrellas != null) {
                     binding.ratingBar.rating = estrellas.toFloat()
@@ -68,8 +68,10 @@ class ValorarLibro : AppCompatActivity() {
             val dao = AppDatabase.obtener(this@ValorarLibro).libroDao()
 
             // Si ya estaba en Room (venía de Leyendo o Leídos) se conservan sus datos; si viene de la búsqueda, se crea
-            val base = dao.obtener(volumeId) ?: Libro(
+            val usuario = obtenerUsuarioActual()
+            val base = dao.obtener(volumeId, usuario) ?: Libro(
                 volumeId = volumeId,
+                usuario = usuario,
                 titulo = intent.getStringExtra("titulo") ?: "",
                 autor = intent.getStringExtra("autor") ?: "",
                 paginas = intent.getIntExtra("paginas", 0),

@@ -29,7 +29,7 @@ class QuieroLeer : AppCompatActivity() {
         binding.rvQuieroLeer.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            dao.porEstado(Estado.QUIERO_LEER).collect { libros ->
+            dao.porEstado(obtenerUsuarioActual(), Estado.QUIERO_LEER).collect { libros ->
                 binding.rvQuieroLeer.adapter = AdaptadorQuiero(
                     libros.sortedByDescending { it.interes ?: 0 }
                 ) { empezar(it) }

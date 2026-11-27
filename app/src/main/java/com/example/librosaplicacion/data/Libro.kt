@@ -1,13 +1,14 @@
 package com.example.librosaplicacion.data
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 enum class Estado { QUIERO_LEER, LEYENDO, LEIDO }
 
-@Entity(tableName = "libros")
+// Clave compuesta: el mismo libro puede estar guardado por varios usuarios
+@Entity(tableName = "libros", primaryKeys = ["volumeId", "usuario"])
 data class Libro(
-    @PrimaryKey val volumeId: String,
+    val volumeId: String,
+    val usuario: String = "",   // Dueño del registro (nombre con el que inició sesión)
     val titulo: String,
     val autor: String,
     val paginas: Int,

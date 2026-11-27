@@ -26,13 +26,13 @@ class PerfilUser : AppCompatActivity() {
         ajustarBordes(binding.root)
 
         // Cabecera
-        val usuario = intent.getStringExtra("usuario") ?: ""
+        val usuario = obtenerUsuarioActual()
         binding.tvSaludo.text = getString(R.string.saludo, usuario)
         binding.tvLectorDesde.text = getString(R.string.lector_desde, Calendar.getInstance().get(Calendar.YEAR).toString())
 
         // Las estadísticas se recalculan cada vez que cambia la tabla
         lifecycleScope.launch {
-            AppDatabase.obtener(this@PerfilUser).libroDao().todos().collect { mostrarEstadisticas(it) }
+            AppDatabase.obtener(this@PerfilUser).libroDao().todos(usuario).collect { mostrarEstadisticas(it) }
         }
     }
 

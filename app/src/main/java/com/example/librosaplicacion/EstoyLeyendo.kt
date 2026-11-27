@@ -28,7 +28,7 @@ class EstoyLeyendo : AppCompatActivity() {
         binding.rvOtrosLeyendo.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
-            AppDatabase.obtener(this@EstoyLeyendo).libroDao().porEstado(Estado.LEYENDO)
+            AppDatabase.obtener(this@EstoyLeyendo).libroDao().porEstado(obtenerUsuarioActual(), Estado.LEYENDO)
                 .collect { libros ->
                     // El último libro que empezó a leerse (fechaInicio más reciente) va primero
                     val leyendo = libros.sortedByDescending { it.fechaInicio ?: 0L }

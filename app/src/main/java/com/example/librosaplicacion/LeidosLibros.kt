@@ -24,7 +24,7 @@ class LeidosLibros : AppCompatActivity() {
         binding.btnPerfilHeader.setOnClickListener { abrirPerfil() }
 
         lifecycleScope.launch {
-            AppDatabase.obtener(this@LeidosLibros).libroDao().porEstado(Estado.LEIDO)
+            AppDatabase.obtener(this@LeidosLibros).libroDao().porEstado(obtenerUsuarioActual(), Estado.LEIDO)
                 .collect { libros ->
                     // Los terminados más recientemente, primero
                     val leidos = libros.sortedByDescending { it.fechaFin ?: 0L }

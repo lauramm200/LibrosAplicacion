@@ -23,6 +23,7 @@ class BusquedaLibros : AppCompatActivity() {
     private lateinit var binding: ActivityBusquedaLibrosBinding
     private lateinit var adaptador: AdaptadorBusqueda
     private val dao by lazy { AppDatabase.obtener(this).libroDao() }
+    private val usuario by lazy { obtenerUsuarioActual() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,7 +97,7 @@ class BusquedaLibros : AppCompatActivity() {
     // Si el libro ya está en la biblioteca avisa; si no, abre el diálogo
     private fun alPulsarQuiero(libro: Libro) {
         lifecycleScope.launch {
-            if (dao.obtener(libro.volumeId) != null) {
+            if (dao.obtener(libro.volumeId, usuario) != null) {
                 Toast.makeText(this@BusquedaLibros, R.string.libro_ya_guardado, Toast.LENGTH_SHORT).show()
             } else {
                 mostrarDialogoQuiero(libro)
@@ -117,7 +118,7 @@ class BusquedaLibros : AppCompatActivity() {
             val interes = dialogo.ratingInteres.rating.toInt()
 
             lifecycleScope.launch {
-                dao.guardar(libro.copy(estado = Estado.QUIERO_LEER, recomendadoPor = recomendadoPor, interes = interes))
+                dao.guardar(libro.copy(usuario = usuario, estado = Estado.QUIERO_LEER, recomendadoPor = recomendadoPor, interes = interes))
                 Toast.makeText(this@BusquedaLibros, R.string.libro_guardado, Toast.LENGTH_SHORT).show()
                 ventana.dismiss()
             }
