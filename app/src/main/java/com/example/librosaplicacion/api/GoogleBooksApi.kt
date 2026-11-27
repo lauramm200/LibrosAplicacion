@@ -12,7 +12,7 @@ interface GoogleBooksApi {
     @GET("volumes")
     suspend fun buscar(
         @Query("q") consulta: String,
-        @Query("maxResults") max: Int = 20,
+        @Query("maxResults") max: Int = 40,
         @Query("key") clave: String? = BuildConfig.BOOKS_API_KEY.ifEmpty { null }
     ): RespuestaVolumenes
 

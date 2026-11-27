@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                     binding.cardSeguirLeyendo.visibility = if (actual != null) View.VISIBLE else View.GONE
 
                     if (actual != null) {
+                        binding.ivPortada.cargarPortada(actual.portada)
                         binding.tvLibroTitulo.text = actual.titulo
                         binding.tvLibroInicio.text =
                             getString(R.string.inicio_lectura, formatearFecha(actual.fechaInicio))

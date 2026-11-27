@@ -30,6 +30,9 @@ class BusquedaLibros : AppCompatActivity() {
         binding = ActivityBusquedaLibrosBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ajustarBordes(binding.root)
+        configurarBarraInferior(binding.barraInferior.bottomNav, R.id.nav_buscar)
+
+        binding.btnPerfilHeader.setOnClickListener { abrirPerfil() }
 
         adaptador = AdaptadorBusqueda(
             libros = emptyList(),
@@ -39,8 +42,10 @@ class BusquedaLibros : AppCompatActivity() {
         binding.rvResultados.layoutManager = LinearLayoutManager(this)
         binding.rvResultados.adapter = adaptador
 
+        binding.tilBuscar.setStartIconOnClickListener { buscar() }
+
         binding.etBuscar.setOnEditorActionListener { _, accion, _ ->
-            if (accion == EditorInfo.IME_ACTION_SEARCH) {
+            if (accion == EditorInfo.IME_ACTION_SEARCH || accion == EditorInfo.IME_ACTION_DONE || accion == EditorInfo.IME_ACTION_GO) {
                 buscar()
                 true
             } else false
@@ -48,6 +53,9 @@ class BusquedaLibros : AppCompatActivity() {
 
         // Al cambiar de filtro se repite la búsqueda
         binding.chipGroupFiltros.setOnCheckedStateChangeListener { _, _ -> buscar() }
+
+        // Búsqueda inicial automática al abrir la pantalla
+        buscar()
     }
 
     private fun buscar() {
@@ -61,15 +69,23 @@ class BusquedaLibros : AppCompatActivity() {
             else -> null
         }
 
-        // "texto subject:categoria"; si falta una de las dos partes, solo se envía la otra
-        val consulta = listOfNotNull(texto.ifEmpty { null }, categoria?.let { "subject:$it" })
-            .joinToString(" ")
+        // Si el texto está vacío y se elige "Todos", buscamos "libros" para mostrar resultados por defecto
+        val consulta = if (texto.isEmpty() && categoria == null) {
+            "libros"
+        } else {
+            listOfNotNull(texto.ifEmpty { null }, categoria?.let { "subject:$it" }).joinToString(" ")
+        }
+
         if (consulta.isEmpty()) return
 
         lifecycleScope.launch {
             try {
-                val respuesta = RetrofitClient.api.buscar(consulta)
-                adaptador.actualizar(respuesta.items.orEmpty().map { it.aLibro() })
+                val respuesta = RetrofitClient.api.buscar(consulta, max = 40)
+                val lista = respuesta.items.orEmpty().map { it.aLibro() }
+                adaptador.actualizar(lista)
+                if (lista.isEmpty()) {
+                    Toast.makeText(this@BusquedaLibros, "No se encontraron resultados", Toast.LENGTH_SHORT).show()
+                }
             } catch (e: Exception) {
                 Log.e("BusquedaLibros", "Error al buscar", e)
                 Toast.makeText(this@BusquedaLibros, R.string.error_busqueda, Toast.LENGTH_SHORT).show()

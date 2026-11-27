@@ -33,8 +33,9 @@ class AdaptadorQuiero(
         if (recomendado != null) {
             holder.binding.tvRecomendadoPor.text =
                 holder.itemView.context.getString(R.string.recomendado_por, recomendado)
-            holder.binding.btnEmpezar.setOnClickListener { alEmpezar(libro) }
-
         }
+
+        // El botón 'Empezar' se debe configurar SIEMPRE, haya o no recomendación
+        holder.binding.btnEmpezar.setOnClickListener { alEmpezar(libro) }
     }
 }

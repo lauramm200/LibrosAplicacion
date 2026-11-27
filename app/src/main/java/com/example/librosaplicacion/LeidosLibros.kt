@@ -21,6 +21,8 @@ class LeidosLibros : AppCompatActivity() {
         ajustarBordes(binding.root)
         configurarBarraInferior(binding.barraInferior.bottomNav, R.id.nav_leidos)
 
+        binding.btnPerfilHeader.setOnClickListener { abrirPerfil() }
+
         lifecycleScope.launch {
             AppDatabase.obtener(this@LeidosLibros).libroDao().porEstado(Estado.LEIDO)
                 .collect { libros ->

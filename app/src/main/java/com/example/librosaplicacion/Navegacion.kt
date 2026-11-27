@@ -14,25 +14,42 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 
 // Configura la barra inferior de Leídos, Leyendo y Quiero leer.
-// "actual" = id de la opción que corresponde a la pantalla donde se llama.
+// "actual" = id de la opción que corresponde a la pantalla donde se llama (0 si es neutra, ej. inicio o búsqueda).
 fun Activity.configurarBarraInferior(barra: BottomNavigationView, actual: Int) {
     // Relaciona cada opción del menú con su pantalla
     val destinos = mapOf(
+        R.id.nav_buscar to BusquedaLibros::class.java,
         R.id.nav_leidos to LeidosLibros::class.java,
         R.id.nav_leyendo to EstoyLeyendo::class.java,
         R.id.nav_quiero to QuieroLeer::class.java
     )
 
-    // Resalta la opción de esta pantalla (antes del listener, para no disparar un clic)
-    barra.selectedItemId = actual
+    // Resalta la opción de esta pantalla si corresponde (0 = ninguna seleccionada de forma activa)
+    if (actual != 0) {
+        barra.selectedItemId = actual
+    } else {
+        barra.menu.setGroupCheckable(0, true, false)
+        for (i in 0 until barra.menu.size()) {
+            barra.menu.getItem(i).isChecked = false
+        }
+        barra.menu.setGroupCheckable(0, true, true)
+    }
 
     barra.setOnItemSelectedListener { item ->
         if (item.itemId != actual) {
-            startActivity(Intent(this, destinos.getValue(item.itemId)))
-            finish()
+            val intentNavegacion = Intent(this, destinos.getValue(item.itemId))
+            intentNavegacion.putExtra("usuario", obtenerUsuarioActual())
+            startActivity(intentNavegacion)
         }
         true
     }
+}
+
+// Obtiene el nombre de usuario activo desde el Intent o desde la sesión guardada
+fun Activity.obtenerUsuarioActual(): String {
+    val deIntent = intent.getStringExtra("usuario")
+    if (!deIntent.isNullOrEmpty()) return deIntent
+    return getSharedPreferences("sesion", Activity.MODE_PRIVATE).getString("usuario", "") ?: ""
 }
 
 // Añade padding igual al tamaño de las barras del sistema para que no tapen el contenido
@@ -66,6 +83,12 @@ fun Activity.abrirValorar(libro: Libro) {
             .putExtra("paginas", libro.paginas)
             .putExtra("portada", libro.portada)
     )
+}
+
+// Abre la pantalla de mi perfil pasando el nombre de usuario activo
+fun Activity.abrirPerfil() {
+    val usuario = obtenerUsuarioActual()
+    startActivity(Intent(this, PerfilUser::class.java).putExtra("usuario", usuario))
 }
 
 // Carga la portada desde su URL; si no hay URL, se queda el fondo amarillo del marcador

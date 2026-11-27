@@ -24,6 +24,8 @@ class QuieroLeer : AppCompatActivity() {
         ajustarBordes(binding.root)
         configurarBarraInferior(binding.barraInferior.bottomNav, R.id.nav_quiero)
 
+        binding.btnPerfilHeader.setOnClickListener { abrirPerfil() }
+
         binding.rvQuieroLeer.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {

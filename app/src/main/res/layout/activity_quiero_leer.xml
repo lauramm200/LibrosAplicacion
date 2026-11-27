@@ -2,6 +2,7 @@
 <!-- RAIZ: igual que Leidos: contenido arriba (weight=1) y barra inferior abajo.
      Sin ScrollView: la lista ya hace scroll por si misma. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -20,15 +21,33 @@
         android:paddingTop="48dp"
         android:paddingEnd="24dp">
 
-        <!-- TITULO -->
-        <TextView
-            android:id="@+id/tvTituloQuiero"
-            android:layout_width="wrap_content"
+        <!-- TITULO + BOTÓN PERFIL -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/titulo_quiero_leer"
-            android:textColor="@color/marron"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvTituloQuiero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/titulo_quiero_leer"
+                android:textColor="@color/marron"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPerfilHeader"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/btn_mi_perfil"
+                app:icon="@drawable/ic_perfil"
+                app:iconSize="28dp"
+                app:iconTint="@color/marron" />
+        </LinearLayout>
 
         <!-- SUBTITULO -->
         <TextView

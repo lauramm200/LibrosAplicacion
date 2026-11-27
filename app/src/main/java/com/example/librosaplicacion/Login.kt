@@ -70,8 +70,11 @@ class Login : AppCompatActivity() {
 
     // Abre el menú y cierra el login para que el botón "atrás" no vuelva aquí
     private fun irAlMenu() {
+        val usuario = binding.etUsuario.text.toString().trim()
+        getSharedPreferences("sesion", MODE_PRIVATE).edit().putString("usuario", usuario).apply()
+
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("usuario", binding.etUsuario.text.toString().trim())
+        intent.putExtra("usuario", usuario)
         startActivity(intent)
         finish()
     }

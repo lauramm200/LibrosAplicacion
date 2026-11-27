@@ -48,6 +48,7 @@
     <string name="desc_portada">Portada del libro</string>
 
     <!-- ============ BOTONES (pantalla Bienvenida) ============ -->
+    <string name="nav_buscar">Buscar</string>
     <string name="btn_buscar_libros">Buscar libros</string>
     <string name="btn_mis_leidos">Mis libros leídos</string>
     <string name="btn_me_estoy_leyendo">Me estoy leyendo</string>
