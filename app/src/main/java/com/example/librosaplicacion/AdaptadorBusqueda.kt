@@ -22,6 +22,7 @@ class AdaptadorBusqueda(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val libro = libros[position]
+        holder.binding.ivPortada.cargarPortada(libro.portada)
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvAutor.text = libro.autor
         holder.binding.tvPaginas.text = holder.itemView.context.getString(R.string.paginas_libro, libro.paginas)

@@ -22,6 +22,7 @@ class AdaptadorQuiero(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val libro = libros[position]
+        holder.binding.ivPortada.cargarPortada(libro.portada)
         holder.binding.tvPuesto.text = (position + 1).toString()
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvAutor.text = libro.autor

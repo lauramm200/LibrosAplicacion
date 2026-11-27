@@ -45,15 +45,30 @@ class BusquedaLibros : AppCompatActivity() {
                 true
             } else false
         }
+
+        // Al cambiar de filtro se repite la búsqueda
+        binding.chipGroupFiltros.setOnCheckedStateChangeListener { _, _ -> buscar() }
     }
 
     private fun buscar() {
         val texto = binding.etBuscar.text.toString().trim()
-        if (texto.isEmpty()) return
+
+        // Categoría del chip seleccionado (null = "Todos"); Google Books las clasifica con nombres en inglés
+        val categoria = when (binding.chipGroupFiltros.checkedChipId) {
+            R.id.chipNovela -> "fiction"
+            R.id.chipFantasia -> "fantasy"
+            R.id.chipHistoria -> "history"
+            else -> null
+        }
+
+        // "texto subject:categoria"; si falta una de las dos partes, solo se envía la otra
+        val consulta = listOfNotNull(texto.ifEmpty { null }, categoria?.let { "subject:$it" })
+            .joinToString(" ")
+        if (consulta.isEmpty()) return
 
         lifecycleScope.launch {
             try {
-                val respuesta = RetrofitClient.api.buscar(texto)
+                val respuesta = RetrofitClient.api.buscar(consulta)
                 adaptador.actualizar(respuesta.items.orEmpty().map { it.aLibro() })
             } catch (e: Exception) {
                 Log.e("BusquedaLibros", "Error al buscar", e)

@@ -21,6 +21,7 @@ class AdaptadorLeyendo(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val libro = libros[position]
+        holder.binding.ivPortada.cargarPortada(libro.portada)
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvInicio.text = holder.itemView.context
             .getString(R.string.inicio_lectura, formatearFecha(libro.fechaInicio))

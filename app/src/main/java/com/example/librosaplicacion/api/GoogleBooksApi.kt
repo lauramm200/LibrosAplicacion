@@ -13,13 +13,13 @@ interface GoogleBooksApi {
     suspend fun buscar(
         @Query("q") consulta: String,
         @Query("maxResults") max: Int = 20,
-        @Query("key") clave: String = BuildConfig.BOOKS_API_KEY
+        @Query("key") clave: String? = BuildConfig.BOOKS_API_KEY.ifEmpty { null }
     ): RespuestaVolumenes
 
     @GET("volumes/{id}")
     suspend fun porId(
         @Path("id") id: String,
-        @Query("key") clave: String = BuildConfig.BOOKS_API_KEY
+        @Query("key") clave: String? = BuildConfig.BOOKS_API_KEY.ifEmpty { null }
     ): Volumen
 }
 

@@ -10,6 +10,8 @@ import com.example.librosaplicacion.data.Libro
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import android.widget.ImageView
+import com.bumptech.glide.Glide
 
 // Configura la barra inferior de Leídos, Leyendo y Quiero leer.
 // "actual" = id de la opción que corresponde a la pantalla donde se llama.
@@ -64,4 +66,9 @@ fun Activity.abrirValorar(libro: Libro) {
             .putExtra("paginas", libro.paginas)
             .putExtra("portada", libro.portada)
     )
+}
+
+// Carga la portada desde su URL; si no hay URL, se queda el fondo amarillo del marcador
+fun ImageView.cargarPortada(url: String?) {
+    Glide.with(this).load(url).into(this)
 }

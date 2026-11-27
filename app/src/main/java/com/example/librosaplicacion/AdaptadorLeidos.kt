@@ -25,6 +25,7 @@ class AdaptadorLeidos(
     // Rellena la celda de la posición indicada con su libro
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val libro = libros[position]
+        holder.binding.ivPortada.cargarPortada(libro.portada)
         holder.binding.tvTitulo.text = libro.titulo
         holder.binding.tvPorcentaje.text = holder.itemView.context
             .getString(R.string.porcentaje, libro.porcentaje ?: 0)

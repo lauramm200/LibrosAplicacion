@@ -25,6 +25,7 @@ class ValorarLibro : AppCompatActivity() {
         // Datos del libro recibidos desde Leyendo, Búsqueda o Leídos
         binding.tvTitulo.text = intent.getStringExtra("titulo") ?: ""
         binding.tvAutor.text = intent.getStringExtra("autor") ?: ""
+        binding.ivPortada.cargarPortada(intent.getStringExtra("portada"))
 
         // El texto del porcentaje sigue al deslizador
         mostrarPorcentaje(binding.sliderRecomendacion.value.toInt())
